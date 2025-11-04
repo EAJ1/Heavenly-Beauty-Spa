@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heavenly Beauty Spa</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Heavenly Beauty Spa</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div id="particles-js"></div>
+        <div class="container">
+            <h2 class="animated-text">Welcome  to  Paradise</h2>
+            <p class="glow-text">Indulge in ultimate relaxation and beauty treatments at Heavenly Beauty Spa.</p>
+            <a href="#services" class="btn glow-btn">Explore Services</a>
+        </div>
+    </section>
+
+    <section id="services" class="parallax fade-in">
+        <div class="container">
+            <h2 class="animated-text">Our Services</h2>
+            <div class="services-grid">
+                <div class="service flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3>Facial Treatments</h3>
+                            <p>Rejuvenate your skin with our premium facial services.</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Book Now</h3>
+                            <p>Experience luxury at its finest. Click to schedule your appointment.</p>
+                            <button class="book-btn">Reserve</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="service flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3>Massage Therapy</h3>
+                            <p>Relax and unwind with our expert massage techniques.</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Book Now</h3>
+                            <p>Melt away stress with our therapeutic touch. Click to schedule your session.</p>
+                            <button class="book-btn">Reserve</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="service flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3>Body Scrubs</h3>
+                            <p>Exfoliate and nourish your skin with our luxurious scrubs.</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Book Now</h3>
+                            <p>Reveal your natural glow. Click to schedule your exfoliation treatment.</p>
+                            <button class="book-btn">Reserve</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="service flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3>Hair Care</h3>
+                            <p>Transform your hair with our professional styling and treatments.</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Book Now</h3>
+                            <p>Unlock your hair's potential. Click to schedule your transformation.</p>
+                            <button class="book-btn">Reserve</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="fade-in">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>At Heavenly Beauty Spa, we believe in providing a serene environment where you can escape the stresses of daily life. Our team of skilled professionals is dedicated to helping you look and feel your best.</p>
+        </div>
+    </section>
+
+    <section id="contact" class="fade-in">
+        <div class="container">
+            <h2 class="animated-text">Contact Us</h2>
+            <p>Ready to book your appointment? Get in touch with us!</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>Phone</h3>
+                    <p>(123) 456-7890</p>
+                </div>
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <p>info@heavenlybeautyspa.com</p>
+                </div>
+                <div class="contact-item">
+                    <h3>Address</h3>
+                    <p>123 Spa Lane, Relaxation City, RC 12345</p>
+                </div>
+            </div>
+            <button class="book-modal-btn" onclick="openModal()">Book Appointment</button>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Book Your Appointment</h2>
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="service">Service:</label>
+                    <select id="service" name="service" required>
+                        <option value="">Select a service</option>
+                        <option value="facial">Facial Treatments</option>
+                        <option value="massage">Massage Therapy</option>
+                        <option value="scrub">Body Scrubs</option>
+                        <option value="hair">Hair Care</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">Preferred Date:</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Preferred Time:</label>
+                    <input type="time" id="time" name="time" required>
+                </div>
+                <button type="submit" class="submit-btn">Submit Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Heavenly Beauty Spa. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Particles.js configuration
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: ['#800080', '#FFC0CB', '#FFFFFF'] },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: '#800080', opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 2, direction: 'none', random: true, straight: false, out_mode: 'out', bounce: false }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } },
+                modes: { repulse: { distance: 200, duration: 0.4 }, push: { particles_nb: 4 } }
+            },
+            retina_detect: true
+        });
+
+        // Animated text effect
+        const animatedTexts = document.querySelectorAll('.animated-text');
+        animatedTexts.forEach(text => {
+            text.innerHTML = text.textContent.split('').map(letter => `<span>${letter}</span>`).join('');
+        });
+
+        // Parallax effect
+        window.addEventListener('scroll', () => {
+            const parallax = document.querySelector('.parallax');
+            let scrollPosition = window.pageYOffset;
+            parallax.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
+        });
+
+        // Modal functions
+        function openModal() {
+            document.getElementById('bookingModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('bookingModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('bookingModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your booking request! We will contact you soon to confirm your appointment.');
+            closeModal();
+            this.reset();
+        });
+
+        // Liquid blob animation
+        function createBlob() {
+            const blob = document.createElement('div');
+            blob.className = 'liquid-blob';
+            blob.style.left = Math.random() * 100 + 'vw';
+            blob.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            blob.style.animationDelay = Math.random() * 5 + 's';
+            document.body.appendChild(blob);
+
+            setTimeout(() => {
+                blob.remove();
+            }, 15000);
+        }
+
+        setInterval(createBlob, 3000);
+
+        // Morphing background
+        let morphing = true;
+        function morphBackground() {
+            if (morphing) {
+                const hero = document.querySelector('.hero');
+                const colors = ['#800080', '#FFC0CB', '#FFFFFF', '#DDA0DD', '#FFB6C1'];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                hero.style.background = `linear-gradient(135deg, ${randomColor} 0%, #800080 100%)`;
+            }
+        }
+
+        setInterval(morphBackground, 5000);
+
+        // Holographic effect on hover
+        document.querySelectorAll('.service').forEach(service => {
+            service.addEventListener('mouseenter', () => {
+                service.style.filter = 'hue-rotate(45deg) brightness(1.2)';
+            });
+            service.addEventListener('mouseleave', () => {
+                service.style.filter = 'none';
+            });
+        });
+
+        // Scroll-triggered fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
