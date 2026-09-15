@@ -13,6 +13,16 @@ const dialog = document.querySelector('#booking-dialog');
 const form = document.querySelector('#booking-form');
 const dateInput = document.querySelector('#date');
 const status = document.querySelector('#booking-status');
+const treatmentDescriptions = {
+  massage: 'A relaxing massage to help you unwind. Discuss your preferred pressure and areas of focus with the spa.',
+  facial: 'Cleansing and nourishing facial care. Discuss your skin-care preferences with the spa.',
+  scrub: 'An exfoliating body ritual for a refreshed, softer feel. Confirm the treatment details with the spa.',
+  hair: 'Hair care and styling for a fresh finish. Discuss your preferred style and treatment with the spa.'
+};
+function updateTreatmentSummary() {
+  document.querySelector('#treatment-summary').textContent = treatmentDescriptions[form.elements.service.value] || 'Select a treatment to see what to expect.';
+}
+form.elements.service.addEventListener('change', updateTreatmentSummary);
 function localDate() {
   const today = new Date();
   return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
@@ -21,6 +31,7 @@ document.querySelectorAll('[data-book]').forEach(button => button.addEventListen
   dateInput.min = localDate();
   if (button.dataset.book) form.elements.service.value = button.dataset.book;
   status.textContent = '';
+  updateTreatmentSummary();
   dialog.showModal();
 }));
 document.querySelector('.close-button').addEventListener('click', () => dialog.close());
