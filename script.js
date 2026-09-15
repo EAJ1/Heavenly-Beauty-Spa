@@ -14,23 +14,25 @@ const form = document.querySelector('#booking-form');
 const dateInput = document.querySelector('#date');
 const status = document.querySelector('#booking-status');
 const treatmentDescriptions = {
-  massage: 'A relaxing massage to help you unwind. Discuss your preferred pressure and areas of focus with the spa.',
-  facial: 'Cleansing and nourishing facial care. Discuss your skin-care preferences with the spa.',
-  scrub: 'An exfoliating body ritual for a refreshed, softer feel. Confirm the treatment details with the spa.',
-  hair: 'Hair care and styling for a fresh finish. Discuss your preferred style and treatment with the spa.'
+  body: 'Body massage — R700. Let us know your preferred pressure and areas of focus. Ask about duration when booking.',
+  feet: 'Foot massage — R300. A little time to rest your feet. Ask about duration when booking.',
+  makeup: 'Makeup — R400. Tell us about your occasion and preferred look. Ask about duration when booking.',
+  nails: 'Nails — R250. Tell us your preferred nail look. Confirm the details and duration when booking.'
 };
 function updateTreatmentSummary() {
   document.querySelector('#treatment-summary').textContent = treatmentDescriptions[form.elements.service.value] || 'Select a treatment to see what to expect.';
 }
 form.elements.service.addEventListener('change', updateTreatmentSummary);
 function localDate() {
-  const today = new Date();
-  return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+  const parts = new Intl.DateTimeFormat('en-CA', { timeZone: 'Africa/Johannesburg', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date());
+  const value = type => parts.find(part => part.type === type).value;
+  return `${value('year')}-${value('month')}-${value('day')}`;
 }
 document.querySelectorAll('[data-book]').forEach(button => button.addEventListener('click', () => {
   dateInput.min = localDate();
   if (button.dataset.book) form.elements.service.value = button.dataset.book;
   status.textContent = '';
+  document.querySelector('#whatsapp-fallback').hidden = true;
   updateTreatmentSummary();
   dialog.showModal();
 }));
@@ -43,21 +45,18 @@ form.addEventListener('submit', event => {
   event.preventDefault();
   dateInput.min = localDate();
   if (!form.reportValidity()) return;
-  const selectedDate = new Date(`${dateInput.value}T${form.elements.time.value}`);
+  const selectedDate = new Date(`${dateInput.value}T${form.elements.time.value}:00+02:00`);
   if (selectedDate <= new Date()) {
     status.textContent = 'Please choose a date and time in the future.';
     return;
   }
   const service = form.elements.service.selectedOptions[0].textContent;
-  const plan = `HEAVENLY BEAUTY SPA — VISIT PLAN\n\nTreatment: ${service}\nPreferred date: ${dateInput.value}\nPreferred time: ${form.elements.time.value}\nNotes: ${form.elements.notes.value || 'None'}\n\nThis plan has not been sent to the spa and does not reserve an appointment. Contact the spa directly to confirm availability and pricing.\n`;
-  const url = URL.createObjectURL(new Blob([plan], { type: 'text/plain;charset=utf-8' }));
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = 'heavenly-spa-visit-plan.txt';
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-  status.textContent = 'Your visit plan is ready to download. It has not been sent to the spa. Please contact the spa to confirm your appointment.';
+  const message = `Hello Heavenly Beauty Spa! I’d like to request an appointment.\n\nTreatment: ${service}\nPreferred date: ${dateInput.value}\nPreferred time: ${form.elements.time.value} (South Africa time)\n${form.elements.notes.value.trim() ? `Notes: ${form.elements.notes.value.trim()}\n` : ''}\nPlease confirm availability, treatment duration, and your exact location in Mthatha. Thank you!`;
+  const url = `https://wa.me/27829903660?text=${encodeURIComponent(message)}`;
+  const fallback = document.querySelector('#whatsapp-fallback');
+  fallback.href = url;
+  fallback.hidden = false;
+  window.open(url, '_blank', 'noopener,noreferrer');
+  status.textContent = 'Review your request and tap Send in WhatsApp. If WhatsApp did not open, use the link below. Your appointment is confirmed only after the spa replies.';
 });
 document.querySelector('#year').textContent = new Date().getFullYear();
