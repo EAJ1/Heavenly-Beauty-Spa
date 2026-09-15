@@ -14,3 +14,7 @@
 .service-photo{height:280px}.service-photo img{object-position:center}@media(max-width:700px){.service-photo{height:230px}}
 
 .card-copy .service-duration{display:inline-block;background:#f5e8f2;color:#754581;border-radius:20px;padding:4px 12px;margin:0 0 14px;font-size:13px;font-weight:600}
+
+/* Drawn icons keep their appearance across desktop and iPhone browsers. */
+.ui-icon{display:inline-block;width:20px;height:20px;flex-shrink:0;vertical-align:middle}.button>span,.treatment-link>span,.text-link>span{display:inline-flex;align-items:center}.little-flower{width:38px;height:38px;flex-shrink:0}.hero>*{min-width:0}.photo-caption{right:24px}.image-label{max-width:calc(100% - 36px)}
+@media(max-width:700px){.hero-visual{min-height:0;height:clamp(340px,108vw,440px)}.photo-caption{left:24px;right:24px;bottom:28px;font-size:clamp(23px,6.5vw,27px)}.image-label{right:18px;padding:12px 16px;letter-spacing:1.4px}.hero-actions{gap:18px 22px}.hero-actions .button{min-height:48px}.hero-actions .text-link{min-height:44px}.service-title{flex-wrap:wrap;gap:4px 14px}}
